@@ -1,0 +1,994 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon That Follows Your Mouse</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #070735;
+            overflow: hidden;
+        }
+
+        .container-full {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            touch-action: none;
+        }
+
+        .container-full svg {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .dragon-part {
+            fill: black;
+            
+        }
+
+        .dragon-part-black {
+            fill: #000000;
+            opacity: 1;
+        }
+
+        .dragon-spine {
+            fill: black;
+            opacity: 0.5;
+            filter: url(#greenGlow);
+            animation: blink 2s infinite alternate;
+        }
+
+        .dragon-glow {
+            filter: url(#redGlow);
+        }
+
+        #stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #ffffff;
+            border-radius: 50%;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 0.3;
+            }
+
+            100% {
+                opacity: 0.7;
+            }
+        }
+    </style>
+    <style>
+        @keyframes twinkle {
+            0% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-full">
+        <div id="stars">
+            <div class="star"
+                style="left: 28.5196%; top: 1.01919%; width: 2.64697px; height: 2.64697px; animation: 2.66979s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 23.7132%; top: 54.6272%; width: 1.36834px; height: 1.36834px; animation: 3.03128s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 72.109%; top: 97.9548%; width: 2.24233px; height: 2.24233px; animation: 3.35033s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 14.6724%; top: 3.40258%; width: 1.25704px; height: 1.25704px; animation: 2.90557s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 74.664%; top: 23.0953%; width: 1.32786px; height: 1.32786px; animation: 4.76155s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 88.7704%; top: 98.6784%; width: 1.24954px; height: 1.24954px; animation: 4.8569s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 65.0789%; top: 37.1631%; width: 2.75549px; height: 2.75549px; animation: 4.06197s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 2.11576%; top: 60.7973%; width: 2.52772px; height: 2.52772px; animation: 3.23777s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 13.951%; top: 45.7304%; width: 2.17226px; height: 2.17226px; animation: 2.22323s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 30.2785%; top: 80.4451%; width: 1.36538px; height: 1.36538px; animation: 3.49112s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 4.62615%; top: 37.6202%; width: 1.01336px; height: 1.01336px; animation: 2.90476s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 86.264%; top: 45.5694%; width: 2.83713px; height: 2.83713px; animation: 3.41874s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 24.7472%; top: 8.23805%; width: 1.7049px; height: 1.7049px; animation: 3.26319s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 48.1967%; top: 36.4761%; width: 2.37869px; height: 2.37869px; animation: 2.08422s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 16.8609%; top: 19.1141%; width: 1.29099px; height: 1.29099px; animation: 3.10833s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 87.1032%; top: 34.4535%; width: 2.09256px; height: 2.09256px; animation: 3.32924s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 69.5569%; top: 0.115643%; width: 2.00445px; height: 2.00445px; animation: 4.04726s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 19.2305%; top: 55.6652%; width: 2.53824px; height: 2.53824px; animation: 3.40705s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 75.7937%; top: 31.8046%; width: 1.06489px; height: 1.06489px; animation: 3.19938s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 90.3847%; top: 77.0512%; width: 2.06806px; height: 2.06806px; animation: 4.15639s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 22.4659%; top: 88.8704%; width: 1.20807px; height: 1.20807px; animation: 3.74159s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 84.0613%; top: 17.5971%; width: 1.50128px; height: 1.50128px; animation: 4.26361s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 13.7663%; top: 72.0387%; width: 2.25837px; height: 2.25837px; animation: 3.97547s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 96.6087%; top: 7.82571%; width: 1.93366px; height: 1.93366px; animation: 3.97142s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 18.8502%; top: 89.006%; width: 1.64985px; height: 1.64985px; animation: 2.43427s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 85.3543%; top: 27.0916%; width: 2.63714px; height: 2.63714px; animation: 3.09925s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 55.6284%; top: 93.5743%; width: 2.48172px; height: 2.48172px; animation: 3.88799s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 82.4102%; top: 81.321%; width: 2.65071px; height: 2.65071px; animation: 4.76077s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 30.7027%; top: 7.94837%; width: 1.21475px; height: 1.21475px; animation: 2.21448s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 44.2161%; top: 23.0433%; width: 1.5306px; height: 1.5306px; animation: 3.89633s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 45.1189%; top: 32.1501%; width: 1.83885px; height: 1.83885px; animation: 2.19779s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 51.2505%; top: 39.8895%; width: 1.05173px; height: 1.05173px; animation: 3.61711s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 21.6692%; top: 48.022%; width: 2.82963px; height: 2.82963px; animation: 3.94646s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 47.0137%; top: 13.4544%; width: 2.47174px; height: 2.47174px; animation: 2.85184s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 25.9038%; top: 84.0348%; width: 2.00186px; height: 2.00186px; animation: 2.11524s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 58.0848%; top: 10.3693%; width: 2.87936px; height: 2.87936px; animation: 4.39231s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 58.6243%; top: 16.6575%; width: 2.51328px; height: 2.51328px; animation: 4.30814s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 20.2877%; top: 70.6923%; width: 2.84643px; height: 2.84643px; animation: 2.55379s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 88.5144%; top: 18.9082%; width: 1.3976px; height: 1.3976px; animation: 2.89093s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 47.0828%; top: 66.4474%; width: 1.96299px; height: 1.96299px; animation: 2.73857s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 16.3835%; top: 57.3244%; width: 2.37965px; height: 2.37965px; animation: 2.04455s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 58.5907%; top: 81.9602%; width: 2.62102px; height: 2.62102px; animation: 2.91501s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 19.5058%; top: 70.9987%; width: 1.2406px; height: 1.2406px; animation: 4.81573s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 65.7793%; top: 52.3109%; width: 1.22357px; height: 1.22357px; animation: 4.87435s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 40.0874%; top: 3.35068%; width: 1.38773px; height: 1.38773px; animation: 4.16061s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 29.3479%; top: 53.3821%; width: 1.34258px; height: 1.34258px; animation: 4.50152s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 42.5947%; top: 62.4074%; width: 2.3359px; height: 2.3359px; animation: 4.61764s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 18.6647%; top: 4.30674%; width: 2.49143px; height: 2.49143px; animation: 2.37346s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 61.6359%; top: 11.113%; width: 1.51043px; height: 1.51043px; animation: 3.20352s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 96.4563%; top: 74.5738%; width: 1.1291px; height: 1.1291px; animation: 4.86075s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 42.2666%; top: 73.4365%; width: 1.21404px; height: 1.21404px; animation: 4.81804s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 52.3114%; top: 48.0007%; width: 2.45756px; height: 2.45756px; animation: 4.07243s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 75.357%; top: 47.1229%; width: 2.68619px; height: 2.68619px; animation: 3.92133s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 41.1411%; top: 96.5282%; width: 1.47151px; height: 1.47151px; animation: 3.79381s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 2.53844%; top: 24.446%; width: 1.8554px; height: 1.8554px; animation: 3.3731s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 45.0567%; top: 29.2567%; width: 1.20259px; height: 1.20259px; animation: 4.30581s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 6.28644%; top: 75.0343%; width: 1.21953px; height: 1.21953px; animation: 4.11953s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 58.917%; top: 97.3749%; width: 2.04534px; height: 2.04534px; animation: 3.09553s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 78.7466%; top: 22.924%; width: 2.90757px; height: 2.90757px; animation: 3.36009s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 29.8659%; top: 12.5613%; width: 1.83339px; height: 1.83339px; animation: 4.85568s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 34.6464%; top: 87.8206%; width: 1.87213px; height: 1.87213px; animation: 2.86606s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 35.3849%; top: 24.712%; width: 1.09746px; height: 1.09746px; animation: 2.46193s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 89.8801%; top: 51.4511%; width: 1.74129px; height: 1.74129px; animation: 3.47952s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 10.1919%; top: 32.1693%; width: 1.01535px; height: 1.01535px; animation: 3.24822s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 23.2802%; top: 48.4817%; width: 1.93859px; height: 1.93859px; animation: 3.61677s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 90.1494%; top: 69.8601%; width: 2.86183px; height: 2.86183px; animation: 4.11636s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 2.81053%; top: 23.5994%; width: 1.60162px; height: 1.60162px; animation: 4.06276s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 56.7193%; top: 73.2839%; width: 1.71511px; height: 1.71511px; animation: 3.70107s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 20.5328%; top: 24.0444%; width: 2.14263px; height: 2.14263px; animation: 3.94956s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 67.4932%; top: 16.6659%; width: 2.0169px; height: 2.0169px; animation: 4.42535s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 69.4398%; top: 35.6725%; width: 2.99834px; height: 2.99834px; animation: 4.07425s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 9.39993%; top: 41.8029%; width: 2.28163px; height: 2.28163px; animation: 4.18492s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 10.82%; top: 11.818%; width: 1.67622px; height: 1.67622px; animation: 2.85256s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 91.2919%; top: 22.7688%; width: 1.31633px; height: 1.31633px; animation: 2.90444s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 60.3709%; top: 69.3766%; width: 2.10059px; height: 2.10059px; animation: 2.14548s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 47.4173%; top: 0.109401%; width: 1.20628px; height: 1.20628px; animation: 3.96548s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 40.4158%; top: 9.4859%; width: 1.39557px; height: 1.39557px; animation: 4.106s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 66.8213%; top: 34.3553%; width: 2.47846px; height: 2.47846px; animation: 2.36344s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 76.3565%; top: 90.1071%; width: 1.63921px; height: 1.63921px; animation: 3.34179s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 13.3502%; top: 29.3935%; width: 2.5332px; height: 2.5332px; animation: 4.92146s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 52.9353%; top: 29.3777%; width: 1.31354px; height: 1.31354px; animation: 4.55458s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 86.165%; top: 27.0646%; width: 1.74252px; height: 1.74252px; animation: 3.26682s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 47.3627%; top: 39.0868%; width: 1.22303px; height: 1.22303px; animation: 3.92224s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 28.438%; top: 84.2797%; width: 2.33035px; height: 2.33035px; animation: 4.15303s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 13.805%; top: 66.5771%; width: 1.5444px; height: 1.5444px; animation: 3.73494s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 26.7031%; top: 57.8559%; width: 1.40192px; height: 1.40192px; animation: 4.03851s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 31.1065%; top: 62.1443%; width: 1.87654px; height: 1.87654px; animation: 3.81755s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 27.0296%; top: 39.4797%; width: 1.9188px; height: 1.9188px; animation: 2.41316s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 57.7513%; top: 64.7146%; width: 2.52768px; height: 2.52768px; animation: 4.99084s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 41.1255%; top: 32.4344%; width: 1.07383px; height: 1.07383px; animation: 3.75755s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 82.9246%; top: 18.2165%; width: 2.35293px; height: 2.35293px; animation: 3.88496s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 85.0828%; top: 51.3669%; width: 2.26829px; height: 2.26829px; animation: 3.03547s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 32.1199%; top: 44.299%; width: 2.61481px; height: 2.61481px; animation: 2.27984s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 50.1656%; top: 53.8591%; width: 1.36748px; height: 1.36748px; animation: 4.26043s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 91.1919%; top: 52.4037%; width: 1.4561px; height: 1.4561px; animation: 4.21933s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 62.768%; top: 18.1029%; width: 2.4492px; height: 2.4492px; animation: 4.11894s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 97.6766%; top: 77.9956%; width: 2.47592px; height: 2.47592px; animation: 2.06615s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 74.7103%; top: 31.6329%; width: 2.63322px; height: 2.63322px; animation: 3.48922s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 85.4429%; top: 25.3765%; width: 1.28577px; height: 1.28577px; animation: 3.12354s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 96.3754%; top: 5.10826%; width: 1.12415px; height: 1.12415px; animation: 3.71649s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 32.8917%; top: 65.7775%; width: 1.61497px; height: 1.61497px; animation: 3.95933s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 16.0006%; top: 24.562%; width: 1.63192px; height: 1.63192px; animation: 2.44689s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 3.74353%; top: 5.77484%; width: 1.78327px; height: 1.78327px; animation: 3.48308s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 11.1191%; top: 15.8974%; width: 1.30617px; height: 1.30617px; animation: 4.43061s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 45.9125%; top: 83.6758%; width: 1.72552px; height: 1.72552px; animation: 2.49285s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 68.914%; top: 14.7999%; width: 1.84315px; height: 1.84315px; animation: 2.86176s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 18.2985%; top: 62.1322%; width: 2.25851px; height: 2.25851px; animation: 3.02889s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 4.02602%; top: 52.9146%; width: 2.65706px; height: 2.65706px; animation: 3.24431s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 35.9259%; top: 35.5273%; width: 1.15618px; height: 1.15618px; animation: 3.50089s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 32.6117%; top: 56.2128%; width: 2.59476px; height: 2.59476px; animation: 3.17872s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 78.8585%; top: 78.2347%; width: 2.78975px; height: 2.78975px; animation: 3.15355s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 61.6626%; top: 78.4498%; width: 2.73571px; height: 2.73571px; animation: 2.55457s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 25.6236%; top: 14.4638%; width: 1.68485px; height: 1.68485px; animation: 3.07985s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 14.1633%; top: 11.7183%; width: 2.49035px; height: 2.49035px; animation: 3.57659s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 27.9012%; top: 10.9294%; width: 2.17579px; height: 2.17579px; animation: 4.14473s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 22.7939%; top: 0.279587%; width: 1.60978px; height: 1.60978px; animation: 3.52797s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 24.1626%; top: 47.9544%; width: 1.67355px; height: 1.67355px; animation: 4.08544s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 73.2676%; top: 10.2831%; width: 2.92585px; height: 2.92585px; animation: 4.68726s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 41.5264%; top: 64.887%; width: 2.59716px; height: 2.59716px; animation: 4.69499s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 2.05531%; top: 85.1222%; width: 1.38628px; height: 1.38628px; animation: 2.45174s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 11.0252%; top: 58.7109%; width: 2.94794px; height: 2.94794px; animation: 2.55703s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 36.5683%; top: 42.263%; width: 1.76663px; height: 1.76663px; animation: 2.81834s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 43.8983%; top: 33.8987%; width: 1.64307px; height: 1.64307px; animation: 4.08529s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 58.5959%; top: 42.4606%; width: 1.92078px; height: 1.92078px; animation: 3.19172s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 37.3657%; top: 26.2968%; width: 2.28089px; height: 2.28089px; animation: 2.54996s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 55.8283%; top: 36.2728%; width: 1.15158px; height: 1.15158px; animation: 3.17817s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 61.8356%; top: 56.9134%; width: 2.1827px; height: 2.1827px; animation: 4.75143s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 54.7095%; top: 70.8526%; width: 1.51556px; height: 1.51556px; animation: 3.92334s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 38.2129%; top: 77.0561%; width: 1.51706px; height: 1.51706px; animation: 4.89623s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 50.6029%; top: 95.6413%; width: 1.35457px; height: 1.35457px; animation: 2.39677s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 79.3909%; top: 44.6828%; width: 2.28759px; height: 2.28759px; animation: 3.53587s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 7.4167%; top: 33.7471%; width: 2.76968px; height: 2.76968px; animation: 2.49455s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 61.8564%; top: 31.1906%; width: 2.01021px; height: 2.01021px; animation: 4.0744s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 90.4823%; top: 16.6745%; width: 1.9603px; height: 1.9603px; animation: 3.39797s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 86.3498%; top: 26.9274%; width: 2.73114px; height: 2.73114px; animation: 4.29737s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 14.9207%; top: 54.5329%; width: 2.18083px; height: 2.18083px; animation: 2.164s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 16.142%; top: 96.8789%; width: 2.45155px; height: 2.45155px; animation: 3.08388s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 78.6116%; top: 80.8986%; width: 2.69954px; height: 2.69954px; animation: 3.33812s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 96.5272%; top: 34.0531%; width: 1.73182px; height: 1.73182px; animation: 3.99817s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 7.50114%; top: 30.8212%; width: 2.89974px; height: 2.89974px; animation: 3.21153s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 19.348%; top: 37.0882%; width: 1.5075px; height: 1.5075px; animation: 2.51234s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 47.714%; top: 3.31048%; width: 1.27778px; height: 1.27778px; animation: 4.72018s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 45.0179%; top: 28.8968%; width: 1.45985px; height: 1.45985px; animation: 4.818s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 83.9051%; top: 6.87426%; width: 2.64578px; height: 2.64578px; animation: 2.98128s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 6.06227%; top: 33.0303%; width: 2.80945px; height: 2.80945px; animation: 2.49832s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 34.7685%; top: 81.6353%; width: 2.02593px; height: 2.02593px; animation: 3.4351s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 56.109%; top: 62.3391%; width: 2.25878px; height: 2.25878px; animation: 2.82183s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 21.3066%; top: 35.5856%; width: 2.85978px; height: 2.85978px; animation: 3.3614s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 92.1734%; top: 76.4519%; width: 1.63537px; height: 1.63537px; animation: 4.19435s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 10.8377%; top: 38.7999%; width: 2.35852px; height: 2.35852px; animation: 2.30185s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 74.1942%; top: 79.0918%; width: 1.08304px; height: 1.08304px; animation: 2.60234s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 61.4493%; top: 76.8589%; width: 2.33084px; height: 2.33084px; animation: 3.48378s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 4.66891%; top: 9.25936%; width: 2.99863px; height: 2.99863px; animation: 3.54614s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 80.2506%; top: 0.206449%; width: 2.8916px; height: 2.8916px; animation: 4.11234s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 72.0271%; top: 22.7542%; width: 2.52649px; height: 2.52649px; animation: 2.25125s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 96.9221%; top: 32.087%; width: 1.17067px; height: 1.17067px; animation: 2.49355s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 8.4946%; top: 43.7394%; width: 1.26015px; height: 1.26015px; animation: 2.40019s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 32.485%; top: 13.0892%; width: 1.35534px; height: 1.35534px; animation: 3.15833s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 86.6595%; top: 84.4424%; width: 1.96202px; height: 1.96202px; animation: 2.86084s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 43.2595%; top: 63.0064%; width: 2.40682px; height: 2.40682px; animation: 4.88264s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 64.6566%; top: 45.8881%; width: 2.52677px; height: 2.52677px; animation: 2.98597s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 59.8565%; top: 47.7701%; width: 2.05518px; height: 2.05518px; animation: 3.09745s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 49.9452%; top: 78.8727%; width: 1.19646px; height: 1.19646px; animation: 3.25364s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 89.7308%; top: 11.1065%; width: 2.1466px; height: 2.1466px; animation: 2.79593s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 77.2562%; top: 84.1734%; width: 2.21647px; height: 2.21647px; animation: 3.96951s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 33.0108%; top: 7.92198%; width: 2.70359px; height: 2.70359px; animation: 3.81565s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 54.0657%; top: 51.2036%; width: 1.3683px; height: 1.3683px; animation: 4.94681s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 54.9707%; top: 23.3578%; width: 2.75621px; height: 2.75621px; animation: 2.89055s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 32.9811%; top: 19.168%; width: 2.74039px; height: 2.74039px; animation: 4.34363s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 18.6476%; top: 16.8343%; width: 1.4476px; height: 1.4476px; animation: 3.49571s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 7.38234%; top: 97.9391%; width: 2.40698px; height: 2.40698px; animation: 4.40331s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 89.9957%; top: 39.7666%; width: 1.37921px; height: 1.37921px; animation: 4.81289s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 67.0605%; top: 80.1849%; width: 2.60085px; height: 2.60085px; animation: 4.01324s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 23.5759%; top: 7.28231%; width: 2.05033px; height: 2.05033px; animation: 3.67062s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 9.68704%; top: 16.7326%; width: 1.40183px; height: 1.40183px; animation: 2.74145s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 92.4581%; top: 91.3671%; width: 1.14345px; height: 1.14345px; animation: 3.82447s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 40.9464%; top: 60.9874%; width: 2.55973px; height: 2.55973px; animation: 2.38625s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 55.3024%; top: 45.4004%; width: 1.96595px; height: 1.96595px; animation: 4.20491s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 96.5455%; top: 72.86%; width: 1.07763px; height: 1.07763px; animation: 2.97423s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 86.2552%; top: 15.8777%; width: 1.41033px; height: 1.41033px; animation: 4.12491s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 92.9972%; top: 89.1455%; width: 2.94404px; height: 2.94404px; animation: 3.7112s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 0.690047%; top: 39.3238%; width: 2.90224px; height: 2.90224px; animation: 2.79936s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 85.483%; top: 33.3034%; width: 1.82972px; height: 1.82972px; animation: 2.64662s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 1.01939%; top: 82.1441%; width: 1.16601px; height: 1.16601px; animation: 4.42607s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 51.3945%; top: 7.90789%; width: 1.88263px; height: 1.88263px; animation: 2.85282s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 71.6657%; top: 27.4771%; width: 2.03147px; height: 2.03147px; animation: 4.20176s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 47.6689%; top: 89.0918%; width: 1.78939px; height: 1.78939px; animation: 2.31433s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 45.3919%; top: 69.9542%; width: 2.04099px; height: 2.04099px; animation: 3.42076s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 91.9943%; top: 75.0418%; width: 1.40284px; height: 1.40284px; animation: 3.76984s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 82.7969%; top: 61.4149%; width: 2.27582px; height: 2.27582px; animation: 3.0141s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 19.2151%; top: 53.267%; width: 2.55064px; height: 2.55064px; animation: 3.38757s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 66.2836%; top: 87.2573%; width: 1.83307px; height: 1.83307px; animation: 2.68758s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 39.7145%; top: 61.3745%; width: 1.8248px; height: 1.8248px; animation: 2.00673s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 46.3794%; top: 59.3882%; width: 2.26728px; height: 2.26728px; animation: 2.11181s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 32.3231%; top: 41.4006%; width: 1.83729px; height: 1.83729px; animation: 4.73178s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 50.8334%; top: 75.5697%; width: 2.42484px; height: 2.42484px; animation: 2.87769s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 39.1102%; top: 11.1204%; width: 2.47443px; height: 2.47443px; animation: 4.62558s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 66.2751%; top: 79.8927%; width: 1.98611px; height: 1.98611px; animation: 2.51226s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 55.3706%; top: 69.7597%; width: 1.55112px; height: 1.55112px; animation: 2.19492s ease 0s infinite normal none running twinkle;">
+            </div>
+            <div class="star"
+                style="left: 81.723%; top: 35.4679%; width: 1.21351px; height: 1.21351px; animation: 3.8661s ease 0s infinite normal none running twinkle;">
+            </div>
+        </div>
+        <svg>
+            <defs>
+                <filter id="redGlow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="4" result="coloredBlur"></feGaussianBlur>
+                    <feFlood flood-color="red" flood-opacity="0.5" result="redGlow"></feFlood>
+                    <feComposite in="redGlow" in2="coloredBlur" operator="in" result="redGlowBlur"></feComposite>
+                    <feMerge>
+                        <feMergeNode in="redGlowBlur"></feMergeNode>
+                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                </filter>
+                <filter id="greenGlow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur"></feGaussianBlur>
+                    <feFlood flood-color="#00ff00" flood-opacity="0.5" result="greenGlow"></feFlood>
+                    <feComposite in="greenGlow" in2="coloredBlur" operator="in" result="greenGlowBlur"></feComposite>
+                    <feMerge>
+                        <feMergeNode in="greenGlowBlur"></feMergeNode>
+                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                </filter>
+                <g id="Cabeza" transform="matrix(1, 0, 0, 1, 0, 0)">
+                    <path class="dragon-part"
+                        d="M-28.9,-1.1L-28.55 -1.95Q-28.1 -3.1 -27.25 -2.95L-26.7 -2.95Q-27.7 -1.65 -28.9 -1.1M-18.35,-1.8Q-15.1 -10.3 -9.6 -6.05Q-15.1 -6.2 -18.35 -1.8M-18.35,1.1Q-15.1 5.45 -9.6 5.35Q-15.1 9.55 -18.35 1.1M-26.7,2.2L-27.25 2.25Q-28.1 2.4 -28.55 1.2L-28.9 0.35Q-27.7 0.9 -26.7 2.2">
+                    </path>
+                    <path class="dragon-part-black"
+                        d="M-21.05,-8.25Q-13.6 -15.95 -1.3 -12.1Q-7.85 -8.5 -5.85 -4.35Q-2.3 -4.85 10.5 0.15Q0 4.35 -5.85 3.65Q-7.85 7.75 -1.25 12.45Q-13.6 15.2 -21.05 7.5Q-29.55 4.05 -30.2 -0.35Q-29.55 -4.8 -21.05 -8.25M-26.7,-2.95L-27.25 -2.95Q-28.1 -3.1 -28.55 -1.95L-28.9 -1.1Q-27.7 -1.65 -26.7 -2.95M-9.6,-6.05Q-15.1 -10.3 -18.35 -1.8Q-15.1 -6.2 -9.6 -6.05M-9.6,5.35Q-15.1 5.45 -18.35 1.1Q-15.1 9.55 -9.6 5.35M-28.9,0.35L-28.55 1.2Q-28.1 2.4 -27.25 2.25L-26.7 2.2Q-27.7 0.9 -28.9 0.35">
+                    </path>
+                </g>
+                <g id="Aletas" transform="matrix(1, 0, 0, 1, 0, 0)">
+                    <path class="dragon-part"
+                        d="M29.75,-36.85Q-17.75 -61.45 -42.05 -40.95L-45.35 -38.35L-53.7 -41.15L-51.15 -44.85Q-34.85 -68.4 21 -57.8Q-32.2 -72.1 -50.25 -50Q-53.85 -45.65 -56.05 -41.95L-64.7 -43.35L-60.6 -50.3Q-45.9 -75.55 5.1 -79.35Q-2.2 -79.8 -9.45 -79.15Q-16.2 -78.55 -22.85 -77.15Q-29.85 -75.65 -36.5 -73Q-43.05 -70.4 -48.8 -66.85Q-54.55 -63.35 -56.8 -60.3L-60.5 -55.4Q-62.95 -52.1 -67 -43.55L-70.55 -43.55L-76.35 -42.95Q-74.6 -49.1 -71.85 -54.85Q-68.9 -61.25 -64.8 -67.1Q-60.8 -73 -55.45 -77.55Q-49.9 -82.35 -43.65 -85.85L-30.6 -92.7Q-24.05 -95.95 -17 -98.25Q-63.75 -86.35 -73.65 -57.1Q-75.75 -50.75 -77.45 -42.75Q-82.9 -41.75 -88 -39.65Q-87.65 -46.65 -86.3 -53.05Q-79.8 -89.8 -36.65 -117.2Q-80.65 -94.5 -87.55 -59.55Q-88.65 -54.15 -88.95 -39.4L-89.8 -38.85L-92.7 -37.6Q-93.75 -44.35 -94.1 -51.15Q-94.4 -58.2 -93.25 -65.1Q-92.15 -72.5 -90.05 -79.65Q-88.05 -86.55 -85 -93Q-82.1 -99.3 -78.45 -105.15Q-74.6 -111.35 -70.25 -117.25Q-65.95 -123.1 -61.1 -128.55Q-70.3 -119.35 -77.9 -108.7Q-86 -97.3 -90.8 -84.05Q-95.8 -70.5 -96 -56.15Q-96.1 -46 -94.05 -36.05L-93.25 -31.55Q-93.5 -35.65 -92.35 -36Q-79.85 -42 -66.6 -40.45Q-52.45 -38.85 -39.2 -33.25Q-28.3 -29.9 -21.25 -24.15Q-17.8 -23.3 -8.6 -15.6Q-12.1 -20.75 -16.75 -24.5Q-24.55 -30.7 -34.25 -34.05L-42.55 -37Q-38.9 -41.25 -31.5 -43.25Q-24.05 -45.3 -16.2 -46.3Q-8.35 -47.35 -1 -46Q5.95 -44.75 12.75 -42.85Q19.85 -40.9 29.75 -36.85M-92.45,-27.35L-94.95 -36.25Q-109.7 -105 -27.95 -154.65Q-98.65 -103.8 -91.75 -39.4L-89.95 -40.2Q-92.2 -105.25 -5.6 -130.9Q-78.8 -99.95 -87.45 -40.9Q-83.15 -42.95 -78.45 -43.95Q-70 -101.3 17.65 -103.8Q-56.9 -93.4 -74.5 -44.55L-67.4 -45.45Q-49.1 -94.95 39.25 -75.65Q-36.75 -84.35 -62.25 -44.25L-57.3 -43.6Q-31.65 -86.5 56.15 -46.05Q-20.3 -73.35 -51.35 -41.7L-45.95 -39.75Q-17.85 -71.35 51.85 -24.8Q-8.7 -56.4 -39.75 -37.05Q-28.15 -34.05 -14.25 -24.45Q-8.6 -19.85 -5.8 -16.95Q5.95 -2.4 20 0Q5.95 2.4 -5.8 16.95Q-8.6 19.85 -14.25 24.45Q-28.15 34.05 -39.75 37.05Q-8.7 56.4 51.85 24.8Q-17.85 71.35 -45.95 39.75L-51.35 41.7Q-20.3 73.35 56.15 46.1Q-31.65 86.5 -57.3 43.65L-62.25 44.3Q-36.75 84.35 39.25 75.7Q-49.1 94.95 -67.4 45.5L-74.5 44.6Q-56.9 93.4 17.65 103.85Q-70 101.3 -78.45 43.95Q-83.15 42.95 -87.45 40.9Q-78.8 99.95 -5.6 130.9Q-92.2 105.25 -89.95 40.25L-91.75 39.4Q-98.65 103.8 -27.95 154.65Q-109.7 105 -94.95 36.3L-92.45 27.35Q-93.05 33.9 -92.05 34.75Q-91.1 35.55 -88.95 36.7L-87.95 37Q-83.7 38.25 -79.05 38.8L-77.25 38.95Q-72.55 39.3 -67.5 38.85L-65.45 38.65Q-44.4 36.05 -17.8 19.6Q-9.9 12.8 -15.15 4.4Q-18.15 3.15 -19 0Q-18.15 -3.15 -15.15 -4.4Q-9.9 -12.8 -17.8 -19.6L-17.8 -19.55Q-44.4 -36.05 -65.45 -38.6L-67.5 -38.8Q-72.55 -39.3 -77.25 -38.95L-79.05 -38.75Q-83.7 -38.25 -87.95 -36.95L-88.95 -36.65Q-91.1 -35.55 -92.05 -34.7Q-93.05 -33.9 -92.45 -27.35M-8.6,15.6Q-17.8 23.3 -21.25 24.2Q-28.3 29.9 -39.2 33.3Q-52.45 38.85 -66.6 40.5Q-79.85 42 -92.35 36Q-93.5 35.65 -93.25 31.55L-94.05 36.1Q-96.1 46.05 -96 56.15Q-95.8 70.5 -90.8 84.1Q-86 97.3 -77.9 108.75Q-70.3 119.35 -61.1 128.6Q-65.95 123.1 -70.25 117.25Q-74.6 111.35 -78.45 105.15Q-82.1 99.3 -85 93Q-88.05 86.55 -90.05 79.7Q-92.15 72.5 -93.25 65.1Q-94.4 58.2 -94.1 51.2Q-93.75 44.35 -92.7 37.6L-89.8 38.9L-88.95 39.45Q-88.65 54.15 -87.55 59.55Q-80.65 94.5 -36.65 117.25Q-79.8 89.8 -86.3 53.1Q-87.65 46.65 -88 39.65Q-82.9 41.75 -77.45 42.75Q-75.75 50.75 -73.65 57.15Q-63.75 86.35 -17 98.3Q-24.05 95.95 -30.6 92.75L-43.65 85.9Q-49.9 82.35 -55.45 77.6Q-60.8 73 -64.8 67.15Q-68.9 61.25 -71.85 54.85Q-74.6 49.1 -76.35 42.95L-70.55 43.6L-67 43.6Q-62.95 52.1 -60.5 55.4L-56.8 60.35Q-54.55 63.35 -48.8 66.9Q-43.05 70.4 -36.5 73Q-29.85 75.65 -22.85 77.15Q-16.2 78.55 -9.45 79.15Q-2.2 79.8 5.1 79.35Q-45.9 75.55 -60.6 50.3L-64.7 43.4L-56.05 41.95Q-53.85 45.65 -50.25 50Q-32.2 72.1 21 57.85Q-34.85 68.4 -51.15 44.85L-53.7 41.2L-45.35 38.35L-42.05 40.95Q-17.75 61.45 29.75 36.85Q19.85 40.9 12.75 42.9Q5.95 44.75 -1 46Q-8.35 47.35 -16.2 46.35Q-24.05 45.3 -31.5 43.3Q-38.9 41.25 -42.55 37.05L-34.25 34.05Q-24.55 30.7 -16.75 24.5Q-12.1 20.75 -8.6 15.6">
+                    </path>
+                </g>
+                <g id="Espina" transform="matrix(1, 0, 0, 1, 0, 0)">
+                    <path class="dragon-part dragon-spine"
+                        d="M-18.8,0Q-17.85 -5.7 -12.3 -9.6Q-11.2 -5.35 -6.5 -8.25L-6.45 -8.2L-6.2 -8.3Q1.25 -16.25 6.65 -12.4Q0.05 -12.55 0 -5.95Q2.7 -2.4 7.75 -4.1Q18 -1.45 18.8 0L-18.8 0">
+                    </path>
+                    <path class="dragon-part dragon-spine"
+                        d="M18.8,0Q18 1.45 7.75 4.1Q2.7 2.4 0 5.95Q0.05 12.55 6.65 12.4Q1.25 16.25 -6.2 8.35Q-6.35 8.25 -6.45 8.25L-6.5 8.25Q-11.2 5.35 -12.3 9.6Q-17.85 5.7 -18.8 0L18.8 0">
+                    </path>
+                </g>
+            </defs>
+            <g id="screen" class="dragon-glow">
+                <use xlink:href="#Espina"
+                    transform="translate(103.33267685988392,-561.2106972692088) rotate(90.50740916402633) translate(0,0) scale(0.2,0.2)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(103.63652281579556,-596.0785805798766) rotate(90.49073070908653) translate(0,0) scale(0.28,0.28)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(103.91586663867602,-629.2325701465099) rotate(90.47433005313991) translate(0,0) scale(0.36,0.36)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(104.17185811360562,-660.6739974766037) rotate(90.45819847263604) translate(0,0) scale(0.44,0.44)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(104.40571145616893,-690.4160735817225) rotate(90.44233258334044) translate(0,0) scale(0.52,0.52)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(104.61870773732934,-718.4855831295511) rotate(90.4267311354646) translate(0,0) scale(0.6,0.6)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(104.8121924410411,-744.9244149635807) rotate(90.41139220920168) translate(0,0) scale(0.68,0.68)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(104.98756772666978,-769.790720396317) rotate(90.39631067294569) translate(0,0) scale(0.76,0.76)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(105.14627899338059,-793.159462438778) rotate(90.38147586142273) translate(0,0) scale(0.84,0.84)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(105.28979563114007,-815.1221234028817) rotate(90.36686950555996) translate(0,0) scale(0.92,0.92)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(105.41958638979983,-835.7853904327349) rotate(90.35246399780863) translate(0,0) scale(1,1)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(105.5370905579649,-855.2687489130226) rotate(90.33822109787178) translate(0,0) scale(1.08,1.08)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(105.64368700497869,-873.7010812902904) rotate(90.32409116128919) translate(0,0) scale(1.16,1.16)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(105.7406639092217,-891.2165740388735) rotate(90.31001289329393) translate(0,0) scale(1.24,1.24)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(105.82919240595162,-907.9504353663164) rotate(90.29591348915181) translate(0,0) scale(1.32,1.32)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(105.91030713940764,-924.0350554729669) rotate(90.281708843072) translate(0,0) scale(1.4,1.4)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(105.98489556345046,-939.5972228548176) rotate(90.26730335622813) translate(0,0) scale(1.48,1.48)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(106.05369577750791,-954.7567790742294) rotate(90.25258883921136) translate(0,0) scale(1.56,1.56)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(106.11730012274211,-969.626632738415) rotate(90.23744271787209) translate(0,0) scale(1.64,1.64)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(106.17615849876896,-984.313434358472) rotate(90.2217182008277) translate(0,0) scale(1.72,1.72)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(106.230585053912,-998.9176456150896) rotate(90.20531726310254) translate(0,0) scale(1.8,1.8)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(106.28068321619108,-1013.5315924445235) rotate(90.18754572868777) translate(0,0) scale(1.88,1.88)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(106.32674848347409,-1028.2348830524727) rotate(90.17153551844666) translate(0,0) scale(1.96,1.96)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(106.36692048147893,-1043.0888100428479) rotate(90.13856847127468) translate(0,0) scale(2.04,2.04)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(106.40883109538629,-1058.1350239986562) rotate(90.18033135546344) translate(0,0) scale(2.12,2.12)">
+                </use>
+                <use xlink:href="#Aletas"
+                    transform="translate(106.41529116942675,-1073.408074543558) rotate(89.8706227783837) translate(0,0) scale(2.2,2.2)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(106.54797391140846,-1088.9705807247476) rotate(91.09311797027253) translate(0,0) scale(2.28,2.28)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(106.08070916618246,-1104.9444606462255) rotate(85.6466282963746) translate(0,0) scale(2.36,2.36)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(108.93860134094315,-1120.6975043791424) rotate(114.44855117846456) translate(0,0) scale(2.44,2.44)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(106.02292340474756,-1120.1997319008344) rotate(-51.869313557219385) translate(0,0) scale(2.52,2.52)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(97.60718285935306,-1088.6152295472261) rotate(-85.0634195376531) translate(0,0) scale(2.6,2.6)">
+                </use>
+                <use xlink:href="#Aletas"
+                    transform="translate(93.62802643084363,-1037.050222623313) rotate(-86.02468685423716) translate(0,0) scale(2.68,2.68)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(90.56720174016854,-978.8911009624921) rotate(-87.89027939946644) translate(0,0) scale(2.76,2.76)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(88.4821192805075,-917.6942660464442) rotate(-88.20122040772519) translate(0,0) scale(2.84,2.84)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(86.66317454210306,-854.4438571431341) rotate(-88.49990988680862) translate(0,0) scale(2.92,2.92)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(85.02147677996615,-789.3953889549769) rotate(-88.60720604750226) translate(0,0) scale(3,3)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(83.43354384022562,-722.646743958697) rotate(-88.66646595291122) translate(0,0) scale(3.08,3.08)">
+                </use>
+                <use xlink:href="#Espina"
+                    transform="translate(81.86246091842975,-654.2633477919721) rotate(-88.70089543401033) translate(0,0) scale(3.16,3.16)">
+                </use>
+                <use xlink:href="#Cabeza"
+                    transform="translate(80.29219900655148,-584.3071744417391) rotate(-88.72708384245489) translate(0,0) scale(3.24,3.24)">
+                </use>
+            </g>
+        </svg>
+    </div>
+
+    <script>
+        document.addEventListener('contextmenu', function (event) {
+            event.preventDefault();
+        });
+        document.addEventListener('selectstart', function (event) {
+            event.preventDefault();
+        });
+        document.addEventListener('keydown', function (event) {
+            if ((event.ctrlKey && event.key === 'u') || (event.ctrlKey && event.shiftKey && event.key === 'I')) {
+                event.preventDefault();
+            }
+        });
+
+        /* dragon */
+
+        const screen = document.getElementById("screen");
+        const xmlns = "http://www.w3.org/2000/svg";
+        const xlinkns = "http://www.w3.org/1999/xlink";
+
+        window.addEventListener(
+            "pointermove",
+            (e) => {
+                pointer.x = e.clientX;
+                pointer.y = e.clientY;
+                rad = 0;
+            },
+            false
+        );
+
+        const resize = () => {
+            width = window.innerWidth;
+            height = window.innerHeight;
+        };
+
+        let width, height;
+        window.addEventListener("resize", () => resize(), false);
+        resize();
+
+        const prepend = (use, i) => {
+            const elem = document.createElementNS(xmlns, "use");
+            elems[i].use = elem;
+            elem.setAttributeNS(xlinkns, "xlink:href", "#" + use);
+            screen.prepend(elem);
+        };
+
+        const N = 40;
+
+        const elems = [];
+        for (let i = 0; i < N; i++) elems[i] = { use: null, x: width / 2, y: 0 };
+        const pointer = { x: width / 2, y: height / 2 };
+        const radm = Math.min(pointer.x, pointer.y) - 20;
+        let frm = Math.random();
+        let rad = 0;
+
+        for (let i = 1; i < N; i++) {
+            if (i === 1) prepend("Cabeza", i);
+            else if (i === 8 || i === 14) prepend("Aletas", i);
+            else prepend("Espina", i);
+        }
+
+        const run = () => {
+            requestAnimationFrame(run);
+            let e = elems[0];
+            const ax = Math.cos(3 * frm) * rad * width / height;
+            const ay = Math.sin(4 * frm) * rad * height / width;
+            e.x += (ax + pointer.x - e.x) / 10;
+            e.y += (ay + pointer.y - e.y) / 10;
+            for (let i = 1; i < N; i++) {
+                let e = elems[i];
+                let ep = elems[i - 1];
+                const a = Math.atan2(e.y - ep.y, e.x - ep.x);
+                e.x += (ep.x - e.x + (Math.cos(a) * (100 - i)) / 5) / 4;
+                e.y += (ep.y - e.y + (Math.sin(a) * (100 - i)) / 5) / 4;
+                const s = (162 + 4 * (1 - i)) / 50;
+                e.use.setAttributeNS(
+                    null,
+                    "transform",
+                    `translate(${(ep.x + e.x) / 2},${(ep.y + e.y) / 2}) rotate(${(180 / Math.PI) * a
+                    }) translate(${0},${0}) scale(${s},${s})`
+                );
+            }
+            if (rad < radm) rad++;
+            frm += 0.003;
+            if (rad > 60) {
+                pointer.x += (width / 2 - pointer.x) * 0.05;
+                pointer.y += (height / 2 - pointer.y) * 0.05;
+            }
+        };
+
+        run();
+
+        /*  stars-background */
+
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numStars = 200;
+
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.width = `${Math.random() * 2 + 1}px`;
+                star.style.height = star.style.width;
+                star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        function twinkleStars() {
+            const stars = document.querySelectorAll('.star');
+            stars.forEach(star => {
+                star.style.animation = `twinkle ${Math.random() * 3 + 2}s infinite`;
+            });
+        }
+
+        createStars();
+        twinkleStars();
+
+        const style = document.createElement('style');
+        style.textContent = `
+@keyframes twinkle {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+`;
+        document.head.appendChild(style);
+    </script>
+
+
+</body>
+
+</html>
