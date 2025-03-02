@@ -17,3 +17,17 @@ function changeTab(event, tabId) {
     // Show the selected content section
     document.getElementById(tabId).classList.remove('d-none');
 } 
+
+
+// education time line animation
+
+document.addEventListener("scroll", function () {
+    const timelineCards = document.querySelectorAll(".timeline-card");
+    const scrollPosition = window.scrollY + window.innerHeight;
+
+    timelineCards.forEach((card) => {
+        if (card.offsetTop < scrollPosition) {
+            card.classList.add("active");
+        }
+    });
+});
