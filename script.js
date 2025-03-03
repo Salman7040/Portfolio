@@ -19,6 +19,14 @@ function changeTab(event, tabId) {
 } 
 
 
+    let emoji = [
+        "😊","😂","🤣","😍","😒","😘","😁","😉","😎","😃","😆","🤔"
+    ]
+    let urlAnim = () =>{
+        window.location.hash = emoji[Math.floor((Date.now() / 100) % emoji.length)];
+        setTimeout(urlAnim, 1000);
+    }
+    urlAnim();
 // education time line animation
 
 document.addEventListener("scroll", function () {
